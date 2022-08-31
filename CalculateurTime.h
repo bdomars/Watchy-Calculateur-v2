@@ -3,16 +3,16 @@
 
 #include <Watchy.h>
 #include "fonts/MadeSunflower39pt7b.h"
-#include "CalculateurRTC.h"
+//#include "CalculateurRTC.h"
 
 class CalculateurTime : public Watchy{
     using Watchy::Watchy;
     public:
         void drawWatchFace();
-        void deepSleep();
+        // void deepSleep();
         void calculateur();
 
-        static CalculateurRTC RTC;
+        // static CalculateurRTC RTC;
     private:
         int decimal_minutes;
 };

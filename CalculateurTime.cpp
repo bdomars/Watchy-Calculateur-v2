@@ -24,20 +24,6 @@ void CalculateurTime::drawWatchFace() {
   display.print(displayTime); 
 }
 
-void CalculateurTime::deepSleep() {
-  display.hibernate();
-  calculateur();
-  for (int i = 0; i < 40; i++) {
-    pinMode(i, INPUT);
-  }
-  esp_sleep_enable_ext0_wakeup((gpio_num_t)RTC_INT_PIN,
-                               0); // enable deep sleep wake on RTC interrupt
-  esp_sleep_enable_ext1_wakeup(
-      BTN_PIN_MASK,
-      ESP_EXT1_WAKEUP_ANY_HIGH); // enable deep sleep wake on button press
-  esp_deep_sleep_start();
-}
-
 // calculate decimal time and set new alarm
 void CalculateurTime::calculateur(){
   RTC.read(currentTime);
@@ -50,12 +36,8 @@ void CalculateurTime::calculateur(){
 
   for (int x = 0; x < 1000; x++) {
         if (secs_total < steps[x]) {
-            next_step = steps[x];
             decimal_minutes = x;
             break;
         }
     }
-
-  int next_wake_m = floor(next_step / 60 % 60);
-  int next_wake_s = floor(next_step % 60);
 }
