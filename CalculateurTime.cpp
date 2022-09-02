@@ -19,16 +19,6 @@ void CalculateurTime::drawWatchFace() {
   if (decimal_minutes == 0) {
     displayTime = "NEW";
 
-  // convert current time to seconds
-  int secs_total = (currentTime.Hour * 3600) + (currentTime.Minute * 60) + currentTime.Second;
-  int next_step;
-
-  for (int x = 0; x < 1000; x++) {
-        if (secs_total < steps[x]) {
-            decimal_minutes = x;
-            break;
-        }
-    }
   } else {
     displayTime = String(1000 - decimal_minutes);
   }  
