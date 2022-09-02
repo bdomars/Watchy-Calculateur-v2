@@ -8,7 +8,7 @@ void CalculateurTime::drawWatchFace() {
   calculateur();
   int x = 100;
   int y = 125;
-    
+
   int16_t x1, y1;
   uint16_t w, h;
   String displayTime;
@@ -21,21 +21,21 @@ void CalculateurTime::drawWatchFace() {
 
   } else {
     displayTime = String(1000 - decimal_minutes);
-  }  
+  }
 
   // center time on dsiplay
   display.setFont(&MADE_Sunflower_PERSONAL_USE39pt7b);
   display.setTextWrap(false);
   display.getTextBounds(displayTime, x, y, &x1, &y1, &w, &h);
   display.setCursor(x - w / 2, y);
-  display.print(displayTime); 
+  display.print(displayTime);
 }
 
 // calculate decimal time and set new alarm
-void CalculateurTime::calculateur(){
+void CalculateurTime::calculateur() {
   RTC.read(currentTime);
 
-  int seconds = currentTime.Hour*SEC_H + currentTime.Minute*SEC_M + currentTime.Second;
-  decimal_minutes = round(seconds/SEC_D*1000);
-
+  int seconds = currentTime.Hour * SEC_H + currentTime.Minute * SEC_M +
+                currentTime.Second;
+  decimal_minutes = round(seconds / SEC_D * 1000);
 }
